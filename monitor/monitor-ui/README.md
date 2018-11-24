@@ -25,3 +25,19 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+# Additional stuff by Ant
+
+Add primeNg: https://www.primefaces.org/primeng
+
+    npm install primeng --save
+    npm install primeicons --save
+    npm install @angular/animations --save
+
+Add font-awesome: https://github.com/FortAwesome/angular-fontawesome
+
+    npm install @fortawesome/fontawesome-svg-core
+    npm install @fortawesome/free-solid-svg-icons
+    npm install @fortawesome/angular-fontawesome
+    npm install @fortawesome/free-brands-svg-icons
+    npm install @fortawesome/free-regular-svg-icons

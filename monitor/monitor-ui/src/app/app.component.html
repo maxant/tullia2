@@ -1,3 +1,28 @@
+<p-messages></p-messages>
+
+<p-message severity="warn" text="A static message"></p-message>
+
+<p-button label="Click" (onClick)="handleClick($event)" icon="pi pi-check" iconPos="left" styleClass="ui-button-raised"></p-button>
+
+<i class="pi pi-print" style="font-size: 2em"></i>
+
+<fa-icon icon="angry"></fa-icon>
+
+<fa-icon [icon]="['far', 'angry']" size="lg" rotate="90"></fa-icon>
+
+<fa-icon [icon]="['fas', 'spinner']" [pulse]="true"></fa-icon>
+
+<fa-icon [icon]="['fas', 'coffee']" [border]="true"></fa-icon>
+
+<fa-icon [icon]="['fas', 'coffee']" pull="left"></fa-icon>
+
+<p-toast position="bottom-right"></p-toast>
+
+<div>
+  Do you like this page?
+  <p-checkbox name="groupname" value="val1" [(ngModel)]="selectedValues"></p-checkbox>
+</div>
+
 <h1>{{title}}</h1>
 <nav>
   <a routerLink="/dashboard">Dashboard</a>

@@ -59,17 +59,18 @@ function handleRequest(req, res) {
         } else if (req.method === 'POST' && request.pathname === '/api/heroes') {
             //using post, coz application/json is not allowed with put with cors
             var hero = JSON.parse(req.body);
-            var originalHero = heroes.find(h => h.id == hero.id);
+            var originalHero = heroes.find(h => h.id === hero.id);
             var idx = heroes.indexOf(originalHero);
             if(originalHero && idx >= 0) {
                 console.log('updating hero ' + hero.id + ' at index ' + idx);
                 heroes[idx] = hero;
                 res.writeHead(204, headers);
             } else {
-                console.log('adding hero ' + idx);
-                heroes.push(originalHero);
+                hero.id = heroes.map(h => h.id).reduce((a, c) => Math.max(a,c)) + 1;
+                console.log('adding hero ' + JSON.stringify(hero));
+                heroes.push(hero);
                 res.writeHead(201, headers);
-                res.write(JSON.stringify({msg: 'unknown hero'}));
+                res.write(JSON.stringify(hero)); //return since it now has an id
             }
         } else {
             console.log('ignoring request to ' + request.pathname);

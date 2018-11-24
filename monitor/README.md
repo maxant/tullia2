@@ -13,5 +13,6 @@ open your browser on http://localhost:4200/
 
 # links
 
-https://angular.io/guide/cheatsheet
+- https://angular.io/guide/cheatsheet
 
+- https://blog.angular-university.io/how-does-angular-2-change-detection-really-work/

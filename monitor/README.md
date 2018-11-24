@@ -6,4 +6,12 @@ created with:
 
 run using:
 
+    cd monitor-ui
     ng serve
+
+open your browser on http://localhost:4200/
+
+# links
+
+https://angular.io/guide/cheatsheet
+

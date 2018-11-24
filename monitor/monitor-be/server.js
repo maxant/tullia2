@@ -1,6 +1,8 @@
 var http = require('http');
 var url = require('url');
 
+const PORT = 4201;
+
 var heroes = [
         { id: 11, name: 'Mr. Nice' },
         { id: 12, name: 'Narco' },
@@ -35,13 +37,16 @@ http.createServer(function (request, response) {
         request.body = body;
         handleRequest(request, response);
     });
-}).listen(4201);
+}).listen(PORT);
+console.log('Server listening on port ' + PORT + '...\r\n');
 
 function handleRequest(req, res) {
     try {
         let request = url.parse(req.url, true);
         let matchesSingleHeroRegex = /\/api\/heroes\/(\d*)$/;
         let matchesSingleHeroRequest = request.pathname.match(matchesSingleHeroRegex);
+        let matchesDeleteHeroRegex = /\/api\/heroes\/delete\/(\d*)$/;
+        let matchesDeleteHeroRequest = request.pathname.match(matchesDeleteHeroRegex);
         console.debug('\r\nserving request: ' + JSON.stringify(request) + ', method: ' + req.method + ', body: ' + req.body);
 
         if (req.method === 'GET' && request.pathname === '/api/heroes') {
@@ -71,6 +76,18 @@ function handleRequest(req, res) {
                 heroes.push(hero);
                 res.writeHead(201, headers);
                 res.write(JSON.stringify(hero)); //return since it now has an id
+            }
+        } else if (req.method === 'POST' && matchesDeleteHeroRequest && matchesDeleteHeroRequest[1]) {
+            //using post, coz i cant get delete to work with cors
+            var idx = heroes.findIndex(h => h.id == matchesDeleteHeroRequest[1]);
+            if(idx >= 0) {
+                console.log('deleting hero with id ' + matchesDeleteHeroRequest[1] + ' found at index ' + idx);
+                heroes.splice(idx, 1);
+                res.writeHead(204, headers);
+            } else {
+                console.log('cannot delete unknown hero with id ' + matchesDeleteHeroRequest[1]);
+                res.writeHead(404, headers);
+                res.write(JSON.stringify({msg: 'unknown hero'}));
             }
         } else {
             console.log('ignoring request to ' + request.pathname);

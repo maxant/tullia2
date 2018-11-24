@@ -4,14 +4,22 @@ created with:
 
     ng new monitor-ui
 
-run using:
+
+# running
+
+Start the back end:
+
+    cd monitor-be
+    nodejs server.js
+
+And then the UI:
 
     cd monitor-ui
     ng serve
 
-open your browser on http://localhost:4200/
+Open your browser on http://localhost:4200/
 
-# links
+# Links
 
 - https://angular.io/guide/cheatsheet
 

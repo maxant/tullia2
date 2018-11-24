@@ -1,0 +1,25 @@
+@startuml
+(*) -up-> "First Activity"
+note right: This activity has to be defined
+-right-> "Second Activity"
+--> "Third Activity"
+-left-> (*)
+
+(*) --> "Initialisation"
+if "Some Test" then
+-->[true] "Some Activity"
+--> "Another activity"
+-right-> (*)
+else
+->[false] "Something else"
+-->[Ending process] (*)
+endif
+
+(*) --> ===B1===
+--> "Parallel Activity 1"
+--> ===B2===
+===B1=== --> "Parallel Activity 2"
+--> ===B2===
+--> (*)
+
+@enduml

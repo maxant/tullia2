@@ -4,8 +4,8 @@
 
 nodejs v10 is installed
 
-sudo npm install -g @angular/cli
+    sudo npm install -g @angular/cli
 
-sudo npm i -g npm
+    sudo npm i -g npm
 
 

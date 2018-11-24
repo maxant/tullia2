@@ -1,0 +1,19 @@
+@startuml
+component Comp3
+component [Last\ncomponent] as Comp4
+
+package "Some Group" {
+    () "interface" as I
+    interface Interf3
+    interface "Last\ninterface" as Interf4
+}
+
+I -down- Comp3
+Comp4 --> I : use
+
+Comp4 -(0- Comp3 : use
+
+note top of I : Web Service only
+
+
+@enduml

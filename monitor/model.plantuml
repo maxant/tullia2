@@ -1,0 +1,14 @@
+@startuml
+
+
+class Process
+class SubProcess
+class BusinessTransaction
+class State
+
+BusinessTransaction "1" *-- "1..n" SubProcess
+BusinessTransaction "1" *-- "1" State
+Process <|-- BusinessTransaction
+
+
+@enduml

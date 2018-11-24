@@ -1,0 +1,59 @@
+@startuml
+title Simple communication example
+actor Bob2 #red
+participant Alice << (C,#FFD1B2) >>
+participant Bob
+participant "I have a really\nlong name" as L #99FF99
+
+box "Internal Service" #LightBlue
+  participant Bob
+  participant Alice
+end box
+hide footbox
+
+autonumber 20 10
+Bob2 ->> Alice: startAsync()
+activate Bob2
+Alice -> Bob: Authentication Request
+deactivate Bob2
+destroy Bob2
+note left: this is a first note
+Bob --> Alice: Authentication Response
+autonumber 40 1
+' this is a comment
+== a divider - is that uml?? ==
+activate Alice
+Bob->L: Log transaction
+note left #aqua
+    a note
+    over several
+    lines needs
+    an end note
+end note
+Alice->Alice: This is a signal to self.\nIt also demonstrates\nmultiline \ntext
+activate Alice
+
+newpage with new title
+autonumber 1 1
+Alice -> Bob: Authentication Request
+alt successful case
+Bob -> Alice: Authentication Accepted
+else else some kind of failure
+Bob -> Alice: Authentication Failure
+
+group My own label
+Alice -> Log : Log attack start
+loop 1000 times
+Alice -> Bob: DNS Attack
+end
+Alice -> Log : Log attack end
+end
+else Another type of failure
+Bob -> Alice: Please repeat
+end
+
+newpage with new title
+create John
+Log -> John
+
+@enduml

@@ -1,0 +1,56 @@
+@startuml
+Class01 <|-- Class02 : extension
+Class03 "1" *-- "many" Class04 : composition (contains)
+Class05 o-- Class06 : agregation
+
+Class01 : -Object[] private(someString)
+Class01 : #Object[] protected(someString)
+Class01 : ~Object[] packageprotected(someString)
+Class01 : +Object[] public(someString)
+Class02 : #Object[] field
+
+note "This note is connected\nto several objects." as N
+Class01 .. N
+N .. Class02
+
+interface Class01 << general >>
+abstract Class02
+
+class myObject
+hide myObject members
+show myObject fields
+hide myObject circle
+myObject : someValue
+
+myObject -- Class06
+
+newpage
+Class07 .. Class08
+Class09 -- Class10
+Class11 <|.. Class12
+
+enum TimeUnit
+TimeUnit : DAYS
+TimeUnit : HOURS
+TimeUnit : MINUTES
+
+newpage
+class WithOwnSpot << (S,orchid) >>
+Class13 --> "1" Class14
+Class15 ..> Class16
+Class17 ..|> Class18
+Class19 <--* Class20
+
+newpage
+package foo1.foo2.foo3 {
+    class Object
+    }
+foo1.foo2 +-- foo1.foo2.foo3
+
+newpage
+foo -left-> dummyLeft
+foo -right-> dummyRight
+foo -up-> dummyUp
+foo -down-> dummyDown
+
+@enduml

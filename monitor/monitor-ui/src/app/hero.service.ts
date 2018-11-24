@@ -7,8 +7,13 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Hero } from './hero';
 import { MessageService } from './message.service';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'text/plain' }) //cheating coz of cors, but should be: application/json' })
+};
+
 @Injectable({ providedIn: 'root' })
 export class HeroService {
+
 
   constructor(private messageService: MessageService,
               private http: HttpClient) {
@@ -31,6 +36,14 @@ export class HeroService {
     return this.http.get<Hero>(url).pipe(
       tap(_ => this.log(`fetched hero id=${id}`)),
       catchError(this.handleError<Hero>(`getHero id=${id}`))
+    );
+  }
+
+  /** PUT: update the hero on the server */
+  updateHero (hero: Hero): Observable<any> {
+    return this.http.post(this.heroesUrl, hero, httpOptions).pipe( // Using POST to avoid problems with CORS
+      tap(_ => this.log(`updated hero id=${hero.id}`)),
+      catchError(this.handleError<any>('updateHero'))
     );
   }
 

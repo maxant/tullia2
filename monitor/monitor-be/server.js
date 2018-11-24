@@ -49,9 +49,12 @@ function handleRequest(req, res) {
         let matchesDeleteHeroRequest = request.pathname.match(matchesDeleteHeroRegex);
         console.debug('\r\nserving request: ' + JSON.stringify(request) + ', method: ' + req.method + ', body: ' + req.body);
 
-        if (req.method === 'GET' && request.pathname === '/api/heroes') {
+        if (req.method === 'GET' && request.pathname === '/api/heroes' && !request.query.name) {
             res.writeHead(200, headers);
             res.write(JSON.stringify(heroes));
+        } else if (req.method === 'GET' && request.pathname === '/api/heroes' && request.query.name) {
+            res.writeHead(200, headers);
+            res.write(JSON.stringify(heroes.filter(h => h.name.match(new RegExp(request.query.name, 'gi')))));
         } else if (req.method === 'GET' && matchesSingleHeroRequest && matchesSingleHeroRequest[1]) {
             var hero = heroes.find(h => h.id == matchesSingleHeroRequest[1]);
             if(hero) {

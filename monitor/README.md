@@ -24,3 +24,11 @@ Open your browser on http://localhost:4200/
 - https://angular.io/guide/cheatsheet
 
 - https://blog.angular-university.io/how-does-angular-2-change-detection-really-work/
+
+# TODO
+
+- building and deploying to prod
+- resolver example
+- study digest loop changes
+- https://material.angular.io/components/categories vs https://www.primefaces.org/primeng/#/
+- 

@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, of, EMPTY } from 'rxjs';
+import { catchError, map, tap, mergeMap, take } from 'rxjs/operators';
 
 import { Hero } from './hero';
 import { MessageService } from './message.service';
@@ -12,11 +13,12 @@ const httpOptions = {
 };
 
 @Injectable({ providedIn: 'root' })
-export class HeroService {
+export class HeroService implements Resolve<Hero> {
 
 
   constructor(private messageService: MessageService,
-              private http: HttpClient) {
+              private http: HttpClient,
+              private router: Router) {
   }
 
   private heroesUrl = 'http://localhost:4201/api/heroes';
@@ -101,6 +103,23 @@ export class HeroService {
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
+  }
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Hero> | Observable<never> {
+    let id = route.paramMap.get('id');
+
+    return this.getHero(parseInt(id)).pipe(
+      take(1),
+      mergeMap(hero => {
+        if (hero) {
+          return of(hero);
+        } else { // id not found
+          this.log('hero with id ' + id + ' not found, rerouting to /heroes');
+          this.router.navigate(['/heroes']);
+          return EMPTY;
+        }
+      })
+    );
   }
 
 }

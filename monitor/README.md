@@ -33,16 +33,20 @@ Open your browser on http://localhost:4200/
 
 # TODO
 
+- tracker: https://www.npmjs.com/package/angular-async-tracker
 - whats a directive?
 - whats a pipe?
 - url config, rather than hard coded: https://angular.io/guide/build
+- validation: https://www.primefaces.org/primeng/#/validation
 - testing: https://angular.io/guide/testing
   - e2e?
-- validation: https://www.primefaces.org/primeng/#/validation
+- resolver example
+  - animations: https://angular.io/guide/router#adding-routable-animations
+  - multiple router outlets? <router-outlet #routerOutlet="outlet"></router-outlet>
+  - child routes: https://angular.io/guide/router#canactivatechild-guarding-child-routes
 - building and deploying to prod
   - see readme of ui which is generated, it contains info
   - https://angular.io/guide/build
-- resolver example
 - https://angular.io/guide/language-service and intellij??
 - study digest loop changes
 - responsiveness: https://www.primefaces.org/primeng/#/responsive
